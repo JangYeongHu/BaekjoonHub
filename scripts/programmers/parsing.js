@@ -67,7 +67,7 @@ async function makeData(origin) {
     + `### 문제 설명\n\n`
     + `${problem_description}\n\n`
     + `### 코드\n\n`
-    + `${code}\n\n`
+    +  `\`\`\`${language}\n${code}\n\`\`\`\n\n`
     + `> 출처: 프로그래머스 코딩 테스트 연습, https://school.programmers.co.kr/learn/challenges`;
   return { problemId, directory, message, fileName, readme, code };
 }
