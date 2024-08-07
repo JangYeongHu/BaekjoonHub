@@ -49,7 +49,7 @@ async function makeData(origin) {
   const levelWithLv = `${level}`.includes('lv') ? level : `lv${level}`.replace('lv', 'level ');
   const message = `[${levelWithLv}] Title: ${title}, Time: ${runtime}, Memory: ${memory} -BaekjoonHub`;
   //const fileName = `${convertSingleCharToDoubleChar(title)}.${language_extension}`;
-  const fileName = `${problemId}.${convertSingleCharToDoubleChar(title)}`;
+  const fileName = `${problemId}. ${convertSingleCharToDoubleChar(title)}`;
   const dateInfo = getDateString(new Date(Date.now()));
   // prettier-ignore
   const readme =

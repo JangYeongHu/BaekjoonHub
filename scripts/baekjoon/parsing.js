@@ -55,7 +55,7 @@ async function makeDetailMessageAndReadme(data) {
   const category = problem_tags.join(', ');
   //const fileName = `${convertSingleCharToDoubleChar(title)}.${languages[language]}`;
   //소스코드를 업로드 하지 않고, README.md만 업로드 하기 위해 뒤에 붙는걸 없앴습니다.
-  const fileName = `${problemId}.${convertSingleCharToDoubleChar(title)}`;
+  const fileName = `${problemId}. ${convertSingleCharToDoubleChar(title)}`;
   const dateInfo = submissionTime ?? getDateString(new Date(Date.now()));
   // prettier-ignore-start
   const readme = `# [${level}] ${title} - ${problemId} \n\n`
