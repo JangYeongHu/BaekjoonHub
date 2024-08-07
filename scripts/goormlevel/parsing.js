@@ -107,7 +107,7 @@ async function makeData({
   runtime,
 }) {
   const languageExtension = languages[language.toLowerCase()];
-  const directory = await getDirNameByOrgOption(`College Note/문제 풀이/goormlevel/${examSequence}/${quizNumber}. ${convertSingleCharToDoubleChar(title)}`, language);
+  const directory = `College Note/문제 풀이/`+ await getDirNameByOrgOption(`goormlevel/${examSequence}/${quizNumber}. ${convertSingleCharToDoubleChar(title)}`, language);
   const message = `[goormlevel] Title: ${title}, Time: ${runtime}, Memory: ${memory}, Difficulty: ${difficulty} -BaekjoonHub`;
   const fileName = `${convertSingleCharToDoubleChar(title)}.${languageExtension}`;
   const dateInfo = getDateString(new Date(Date.now()));

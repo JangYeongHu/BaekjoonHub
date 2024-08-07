@@ -44,8 +44,8 @@ async function makeDetailMessageAndReadme(data) {
     problem_description, problem_input, problem_output, submissionTime,
     code, language, memory, runtime } = data;
   const score = parseNumberFromString(result);
-  const directory = await getDirNameByOrgOption( //Obsidian을 위해서 추가적으로 디렉토리를 분류하였습니다.
-    `College Note/문제 풀이/백준/${level.replace(/ .*/, '')}/${problemId}. ${convertSingleCharToDoubleChar(title)}`,
+  const directory = `College Note/문제 풀이/`+ await getDirNameByOrgOption( //Obsidian을 위해서 추가적으로 디렉토리를 분류하였습니다.
+    `백준/${level.replace(/ .*/, '')}/${problemId}. ${convertSingleCharToDoubleChar(title)}`,
     langVersionRemove(language, null)
   );
   const message = `[${level}] Title: ${title}, Time: ${runtime} ms, Memory: ${memory} KB`
