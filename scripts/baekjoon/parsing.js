@@ -45,7 +45,8 @@ async function makeDetailMessageAndReadme(data) {
     code, language, memory, runtime } = data;
   const score = parseNumberFromString(result);
   const directory = `College Note/문제 풀이/`+ await getDirNameByOrgOption( //Obsidian을 위해서 추가적으로 디렉토리를 분류하였습니다.
-    `백준/${level.replace(/ .*/, '')}/${problemId}. ${convertSingleCharToDoubleChar(title)}`,
+    //`백준/${level.replace(/ .*/, '')}/${problemId}. ${convertSingleCharToDoubleChar(title)}`,
+    `백준/${level.replace(/ .*/, '')}`,
     langVersionRemove(language, null)
   );
   const message = `[${level}] Title: ${title}, Time: ${runtime} ms, Memory: ${memory} KB`
@@ -54,7 +55,7 @@ async function makeDetailMessageAndReadme(data) {
   const category = problem_tags.join(', ');
   //const fileName = `${convertSingleCharToDoubleChar(title)}.${languages[language]}`;
   //소스코드를 업로드 하지 않고, README.md만 업로드 하기 위해 뒤에 붙는걸 없앴습니다.
-  const fileName = `${convertSingleCharToDoubleChar(title)}`;
+  const fileName = `${problemId}.${convertSingleCharToDoubleChar(title)}`;
   const dateInfo = submissionTime ?? getDateString(new Date(Date.now()));
   // prettier-ignore-start
   const readme = `# [${level}] ${title} - ${problemId} \n\n`

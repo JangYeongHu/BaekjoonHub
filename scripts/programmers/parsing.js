@@ -45,11 +45,11 @@ async function parseData() {
 
 async function makeData(origin) {
   const { problem_description, problemId, level, result_message, division, language_extension, title, runtime, memory, code, language } = origin;
-  const directory = `College Note/문제 풀이/`+ await getDirNameByOrgOption(`프로그래머스/${level}/${problemId}. ${convertSingleCharToDoubleChar(title)}`, language);
+  const directory = `College Note/문제 풀이/`+ await getDirNameByOrgOption(`프로그래머스/${level}`, language);
   const levelWithLv = `${level}`.includes('lv') ? level : `lv${level}`.replace('lv', 'level ');
   const message = `[${levelWithLv}] Title: ${title}, Time: ${runtime}, Memory: ${memory} -BaekjoonHub`;
   //const fileName = `${convertSingleCharToDoubleChar(title)}.${language_extension}`;
-  const fileName = `${convertSingleCharToDoubleChar(title)}`;
+  const fileName = `${problemId}.${convertSingleCharToDoubleChar(title)}`;
   const dateInfo = getDateString(new Date(Date.now()));
   // prettier-ignore
   const readme =

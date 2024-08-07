@@ -89,9 +89,9 @@ async function makeData(origin) {
   * C++ 같은 경우에는 문자가 그대로 유지됩니다.
   * */
   const lang = (language === language.toUpperCase()) ? language.substring(0, 1) + language.substring(1).toLowerCase() : language
-  const directory = `College Note/문제 풀이/`+ await getDirNameByOrgOption(`SWEA/${level}/${problemId}. ${convertSingleCharToDoubleChar(title)}`, lang);
+  const directory = `College Note/문제 풀이/`+ await getDirNameByOrgOption(`SWEA/${level}`, lang);
   const message = `[${level}] Title: ${title}, Time: ${runtime}, Memory: ${memory} -BaekjoonHub`;
-  const fileName = `${convertSingleCharToDoubleChar(title)}.${extension}`;
+  const fileName = `${problemId}.${convertSingleCharToDoubleChar(title)}.${extension}`;
   const dateInfo = submissionTime ?? getDateString(new Date(Date.now()));
   // prettier-ignore
   const readme =
