@@ -71,7 +71,7 @@ async function makeDetailMessageAndReadme(data) {
       + `### 입력 \n\n ${problem_input}\n\n`
       + `### 출력 \n\n ${problem_output}\n\n`
       // Obsidian에서 보기 위해 소스코드를 추가하였습니다.
-      + `### 소스 코드 \n\n \`\`\`${language}\n${code}\n\`\`\`\n\n` : '');
+      + `### 소스 코드 \n\n \`\`\`${languages[language]}\n${code}\n\`\`\`\n\n` : '');
   // prettier-ignore-end
   return {
     directory,
