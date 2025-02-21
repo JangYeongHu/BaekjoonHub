@@ -33,7 +33,7 @@ function markUploadedCSS(branches, directory) {
               Object.keys(branches)[0] + "/tree/" + 
               branches[Object.keys(branches)[0]] + "/" + directory;
   elem.addEventListener("click", function() {
-    window.location.href = uploadedUrl;
+    window.open(uploadedUrl, "_blank");
   });
   elem.style.cursor = "pointer";
 }

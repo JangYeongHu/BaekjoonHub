@@ -44,21 +44,28 @@ async function makeDetailMessageAndReadme(data) {
     problem_description, problem_input, problem_output, submissionTime,
     code, language, memory, runtime } = data;
   const score = parseNumberFromString(result);
-  const directory = `College Note/문제 풀이/`+ await getDirNameByOrgOption( //Obsidian을 위해서 추가적으로 디렉토리를 분류하였습니다.
-    //`백준/${level.replace(/ .*/, '')}/${problemId}. ${convertSingleCharToDoubleChar(title)}`,
+  const obsidianDirectory = `College Note/문제 풀이/`+ await getDirNameByOrgOption( //Obsidian을 위해서 추가적으로 디렉토리를 분류하였습니다.
     `백준/${level.replace(/ .*/, '')}`,
     langVersionRemove(language, null)
   );
+
+  const directory = await getDirNameByOrgOption(
+    `백준/${level.replace(/ .*/, '')}/${problemId}. ${convertSingleCharToDoubleChar(title)}`,
+    langVersionRemove(language, null)
+  );
+
   const message = `[${level}] Title: ${title}, Time: ${runtime} ms, Memory: ${memory} KB`
     + ((isNaN(score)) ? ' ' : `, Score: ${score} point `) // 서브 태스크가 있는 문제로, 점수가 있는 경우 점수까지 커밋 메시지에 표기
     + `-BaekjoonHub`;
   const category = problem_tags.join(', ');
-  //const fileName = `${convertSingleCharToDoubleChar(title)}.${languages[language]}`;
-  //소스코드를 업로드 하지 않고, README.md만 업로드 하기 위해 뒤에 붙는걸 없앴습니다.
-  const fileName = `${problemId}. ${convertSingleCharToDoubleChar(title)}`;
+  const fileName = `${convertSingleCharToDoubleChar(title)}.${languages[language]}`;
+
+  const obsidianFileName = `${problemId}. ${convertSingleCharToDoubleChar(title)}`;
+
+
   const dateInfo = submissionTime ?? getDateString(new Date(Date.now()));
   // prettier-ignore-start
-  const readme = `# [${level}] ${title} - ${problemId} \n\n`
+  const obsidianReadme = `# [${level}] ${title} - ${problemId} \n\n`
     + `[문제 링크](https://www.acmicpc.net/problem/${problemId}) \n\n`
     + `### 성능 요약\n\n`
     + `메모리: ${memory} KB, `
@@ -71,13 +78,30 @@ async function makeDetailMessageAndReadme(data) {
       + `### 입력 \n\n ${problem_input}\n\n`
       + `### 출력 \n\n ${problem_output}\n\n`
       // Obsidian에서 보기 위해 소스코드를 추가하였습니다.
-      + `### 소스 코드 \n\n \`\`\`${languages[language]}\n${code}\n\`\`\`\n\n` : '');
+      + `### 소스 코드 \n\n \`\`\`${obsidianLanguages[language]}\n${code}\n\`\`\`\n\n` : '');
+
+const readme = `# [${level}] ${title} - ${problemId} \n\n`
+    + `[문제 링크](https://www.acmicpc.net/problem/${problemId}) \n\n`
+    + `### 성능 요약\n\n`
+    + `메모리: ${memory} KB, `
+    + `시간: ${runtime} ms\n\n`
+    + `### 분류\n\n`
+    + `${category || "Empty"}\n\n` + (!!problem_description ? ''
+    + `### 제출 일자\n\n`
+    + `${dateInfo}\n\n`
+      + `### 문제 설명\n\n${problem_description}\n\n`
+      + `### 입력 \n\n ${problem_input}\n\n`
+      + `### 출력 \n\n ${problem_output}\n\n` : '');
+
   // prettier-ignore-end
   return {
     directory,
+    obsidianDirectory,
     fileName,
+    obsidianFileName,
     message,
     readme,
+    obsidianReadme,
     code
   };
 }
